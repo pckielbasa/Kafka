@@ -27,6 +27,7 @@ public class KafkaConfig {
         configProps.put(ProducerConfig.ACKS_CONFIG, "all");
         configProps.put(ProducerConfig.RETRIES_CONFIG, 3);
         configProps.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, CustomPartitioner.class);
+        configProps.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 5000);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
