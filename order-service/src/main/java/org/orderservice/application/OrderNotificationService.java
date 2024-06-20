@@ -1,7 +1,6 @@
 package org.orderservice.application;
 
 import lombok.RequiredArgsConstructor;
-import org.orderservice.domain.model.Order;
 import org.orderservice.infrastructure.kafka.OrderProducer;
 import org.springframework.stereotype.Service;
 
