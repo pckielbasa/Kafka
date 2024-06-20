@@ -2,8 +2,10 @@ package org.orderservice.web;
 
 import lombok.RequiredArgsConstructor;
 import org.orderservice.application.OrderService;
+import org.orderservice.domain.model.Order;
 import org.orderservice.infrastructure.kafka.OrderProducer;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
     private final OrderProducer orderProducer;
-
+    private final OrderService orderService;
 
     @PostMapping(path = "/add")
-    void addOrder() {
-        orderProducer.sendMessageToKafka("order-service","Test","test");
+    void addOrder(@RequestBody Order order) {
+        orderService.addOrder(order);
+        orderProducer.sendMessageToKafka("order-service", order.getOrderId(), "Order added");
     }
 }

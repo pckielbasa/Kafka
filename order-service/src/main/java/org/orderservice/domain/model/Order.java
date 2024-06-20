@@ -1,12 +1,9 @@
 package org.orderservice.domain.model;
 
 import jakarta.persistence.*;
-import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "_order")
@@ -23,7 +20,7 @@ public class Order {
     @Column(name ="customer_id")
     private int customerId;
     @Column(name ="amount")
-    private BigDecimal amount;
+    private Double amount;
     @Column(name ="status")
     private String status;
 }

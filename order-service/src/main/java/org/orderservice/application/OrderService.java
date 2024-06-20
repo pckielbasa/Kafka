@@ -5,20 +5,18 @@ import org.orderservice.domain.model.Order;
 import org.orderservice.domain.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-
 @Service
 @RequiredArgsConstructor
 public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public void addOrder() {
+    public void addOrder(Order order) {
         Order newOrder = new Order();
-        newOrder.setOrderId("1");
-        newOrder.setStatus("Start");
-        newOrder.setCustomerId(1);
-        newOrder.setAmount(new BigDecimal("100.10"));
+        newOrder.setOrderId(order.getOrderId());
+        newOrder.setStatus(order.getStatus());
+        newOrder.setCustomerId(order.getCustomerId());
+        newOrder.setAmount(Double.max(order.getAmount(), 2));
         orderRepository.save(newOrder);
     }
 }
