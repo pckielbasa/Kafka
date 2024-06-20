@@ -4,14 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.orderservice.application.OrderNotificationService;
 import org.orderservice.application.OrderService;
 import org.orderservice.domain.model.Order;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping(path ="order")
@@ -31,9 +34,13 @@ public class OrderController {
             orderService.addOrder(order);
             orderNotificationService.sendCreateOrderNotification(order.getOrderId());
             return ResponseEntity.ok().build();
+        } catch (DataAccessException dae) {
+            logger.error("Database error while adding order with id {}", order.getOrderId(), dae);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Database error occurred");
         } catch (Exception e) {
-            logger.error("Error while adding order by id{}", order.getOrderId(), e);
-            throw new RuntimeException(e);
+            logger.error("Unexpected error while adding order with id {}", order.getOrderId(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(e.getMessage());
         }
     }
 }
