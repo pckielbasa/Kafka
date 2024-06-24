@@ -12,11 +12,13 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public void addOrder(Order order) {
-        Order newOrder = new Order();
-        newOrder.setOrderId(order.getOrderId());
-        newOrder.setStatus(order.getStatus());
-        newOrder.setCustomerId(order.getCustomerId());
-        newOrder.setAmount(Double.max(order.getAmount(), 2));
+        Order newOrder = Order.builder()
+                .orderId(order.getOrderId())
+                .customerId(order.getCustomerId())
+                .amount(order.getAmount())
+                .status(order.getStatus())
+                .creationDate(order.getCreationDate())
+                .build();
         orderRepository.save(newOrder);
     }
 }

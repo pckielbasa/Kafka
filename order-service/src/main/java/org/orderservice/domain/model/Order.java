@@ -2,6 +2,7 @@ package org.orderservice.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class Order {
 
     @Id
@@ -23,4 +25,6 @@ public class Order {
     private Double amount;
     @Column(name ="status")
     private String status;
+    @Column(name ="creation_date")
+    private String creationDate;
 }
