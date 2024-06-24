@@ -5,6 +5,8 @@ import org.orderservice.domain.model.Order;
 import org.orderservice.domain.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -17,7 +19,7 @@ public class OrderService {
                 .customerId(order.getCustomerId())
                 .amount(order.getAmount())
                 .status(order.getStatus())
-                .creationDate(order.getCreationDate())
+                .creationDate(LocalDateTime.now())
                 .build();
         orderRepository.save(newOrder);
     }

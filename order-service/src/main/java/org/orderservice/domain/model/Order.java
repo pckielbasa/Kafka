@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "_order")
 @NoArgsConstructor
@@ -26,5 +28,5 @@ public class Order {
     @Column(name ="status")
     private String status;
     @Column(name ="creation_date")
-    private String creationDate;
+    private LocalDateTime creationDate;
 }
