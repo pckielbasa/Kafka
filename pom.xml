@@ -10,11 +10,11 @@
   <modules>
     <module>FirstMS</module>
     <module>SecondMS</module>
+    <module>order-service</module>
   </modules>
 
   <build>
     <plugins>
-      <!-- Plugin do uruchamiania aplikacji -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -22,17 +22,17 @@
         <executions>
           <execution>
             <id>run-first-ms</id>
-            <phase>verify</phase> <!-- Można użyć innej odpowiedniej fazy -->
+            <phase>verify</phase>
             <goals>
               <goal>java</goal>
             </goals>
             <configuration>
-              <mainClass>org.example.firstms.Main</mainClass> <!-- Główna klasa FirstMS -->
+              <mainClass>org.example.firstms.Main</mainClass>
             </configuration>
           </execution>
           <execution>
             <id>run-second-ms</id>
-            <phase>verify</phase> <!-- Można użyć innej odpowiedniej fazy -->
+            <phase>verify</phase>
             <goals>
               <goal>java</goal>
             </goals>
@@ -40,7 +40,18 @@
               <mainClass>org.secoundms.SecondMsApplication</mainClass>
             </configuration>
           </execution>
+          <execution>
+            <id>run-order-service</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>org.orderservice.OrderServiceApplication</mainClass>
+            </configuration>
+          </execution>
         </executions>
+
       </plugin>
     </plugins>
   </build>
