@@ -3,5 +3,6 @@ CREATE TABLE _Order (
     order_id VARCHAR(50) NOT NULL,
     customer_id INTEGER NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    status VARCHAR(20) NOT NULL
+    status VARCHAR(20) NOT null,
+    creation_date TIMESTAMP NOT NULL
 );
