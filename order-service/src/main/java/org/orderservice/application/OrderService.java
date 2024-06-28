@@ -3,6 +3,8 @@ package org.orderservice.application;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.orderservice.application.event.OrderCreatedEvent;
+import org.orderservice.application.event.OrderDeletedEvent;
+import org.orderservice.domain.dto.CreateOrderCommon;
 import org.orderservice.domain.model.Order;
 import org.orderservice.domain.repository.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -18,16 +20,22 @@ public class OrderService {
     private final OrderEventPublisher eventPublisher;
 
     @Transactional
-    public void addOrder(Order order) throws JsonProcessingException {
+    public void addOrder(CreateOrderCommon createOrderCommon) throws JsonProcessingException {
         Order newOrder = Order.builder()
-                .orderId(order.getOrderId())
-                .customerId(order.getCustomerId())
-                .amount(order.getAmount())
-                .status(order.getStatus())
+                .orderId(createOrderCommon.getOrderId())
+                .customerId(createOrderCommon.getCustomerId())
+                .amount(createOrderCommon.getAmount())
+                .status(createOrderCommon.getStatus())
                 .creationDate(LocalDateTime.now())
                 .build();
         orderRepository.save(newOrder);
-        eventPublisher.publish(new OrderCreatedEvent(newOrder.getOrderId(), newOrder.getAmount()));
+        eventPublisher.publishCreatedOrderEvent(new OrderCreatedEvent(newOrder.getOrderId(), newOrder.getAmount()));
+    }
+
+    @Transactional
+    public void deleteOrder(String orderId) throws JsonProcessingException {
+        orderRepository.deleteByOrderId(orderId);
+        eventPublisher.publishDeletedOrderEvent(new OrderDeletedEvent(orderId));
     }
 
 }
