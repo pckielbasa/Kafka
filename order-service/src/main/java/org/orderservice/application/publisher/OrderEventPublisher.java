@@ -1,4 +1,4 @@
-package org.orderservice.application;
+package org.orderservice.application.publisher;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

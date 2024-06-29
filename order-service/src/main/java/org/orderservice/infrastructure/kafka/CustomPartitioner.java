@@ -13,9 +13,7 @@ public class CustomPartitioner implements Partitioner {
     @Override
     public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
        int numPartitions = cluster.partitionsForTopic(topic).size();
-       int partition = (Utils.murmur2(keyBytes) & 0x7fffffff) % numPartitions;
-       System.out.println("Partition number is " + partition);
-       return partition;
+        return (Utils.murmur2(keyBytes) & 0x7fffffff) % numPartitions;
     }
 
     @Override
