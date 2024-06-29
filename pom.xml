@@ -8,8 +8,6 @@
   <url>http://maven.apache.org</url>
 
   <modules>
-    <module>FirstMS</module>
-    <module>SecondMS</module>
     <module>order-service</module>
   </modules>
 
@@ -20,26 +18,6 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.0.0</version>
         <executions>
-          <execution>
-            <id>run-first-ms</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>java</goal>
-            </goals>
-            <configuration>
-              <mainClass>org.example.firstms.Main</mainClass>
-            </configuration>
-          </execution>
-          <execution>
-            <id>run-second-ms</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>java</goal>
-            </goals>
-            <configuration>
-              <mainClass>org.secoundms.SecondMsApplication</mainClass>
-            </configuration>
-          </execution>
           <execution>
             <id>run-order-service</id>
             <phase>verify</phase>
