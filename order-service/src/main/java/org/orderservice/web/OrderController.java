@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.orderservice.application.OrderService;
 import org.orderservice.domain.dto.CreateOrderCommon;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("order")
@@ -19,5 +16,10 @@ class OrderController {
     @PostMapping( "/create")
     void addOrder(@RequestBody CreateOrderCommon createOrderCommon) throws JsonProcessingException {
             orderService.addOrder(createOrderCommon);
+    }
+
+    @DeleteMapping("/delete-{OrderId}")
+    void deleteOrderById(@PathVariable String OrderId) throws JsonProcessingException {
+        orderService.deleteOrder(OrderId);
     }
 }
