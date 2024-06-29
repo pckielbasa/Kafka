@@ -2,7 +2,7 @@ package org.orderservice.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
-import org.orderservice.application.OrderService;
+import org.orderservice.application.service.OrderService;
 import org.orderservice.domain.dto.CreateOrderCommon;
 import org.springframework.web.bind.annotation.*;
 

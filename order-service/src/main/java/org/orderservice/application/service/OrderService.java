@@ -1,4 +1,4 @@
-package org.orderservice.application;
+package org.orderservice.application.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
