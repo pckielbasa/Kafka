@@ -1,7 +1,6 @@
 package org.paymentservice.kafka;
 
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
