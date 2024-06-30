@@ -1,4 +1,4 @@
-package org.paymentservice.kafka;
+package org.paymentservice.kafka.consumer;
 
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

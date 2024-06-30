@@ -1,7 +1,7 @@
 package org.paymentservice.service;
 
 import lombok.RequiredArgsConstructor;
-import org.paymentservice.kafka.PaymentProducer;
+import org.paymentservice.kafka.producer.PaymentProducer;
 import org.paymentservice.model.Payment;
 import org.springframework.stereotype.Service;
 import org.paymentservice.repository.PaymentMongoRepository;

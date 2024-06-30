@@ -1,4 +1,4 @@
-package org.paymentservice.kafka;
+package org.paymentservice.kafka.producer;
 
 
 
@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Configuration
 @EnableKafka
-public class KafkaConfig {
+public class PaymentProducerConfig {
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
