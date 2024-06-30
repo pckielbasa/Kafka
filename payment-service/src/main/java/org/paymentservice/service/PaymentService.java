@@ -1,6 +1,7 @@
 package org.paymentservice.service;
 
 import lombok.RequiredArgsConstructor;
+import org.paymentservice.kafka.PaymentProducer;
 import org.paymentservice.model.Payment;
 import org.springframework.stereotype.Service;
 import org.paymentservice.repository.PaymentMongoRepository;
@@ -11,6 +12,7 @@ import org.paymentservice.repository.PaymentRepository;
 public class PaymentService implements PaymentRepository {
 
     private final PaymentMongoRepository paymentMongoRepository;
+    private final PaymentProducer paymentProducer;
 
     public void createPayment(Payment payment) {
         Payment newPayment = Payment.builder()
@@ -24,5 +26,6 @@ public class PaymentService implements PaymentRepository {
                 .status("InProgress")
                 .build();
         paymentMongoRepository.save(newPayment);
+        paymentProducer.sendMessageToKafka("payment-service", newPayment.getOrderId(), newPayment.getOrderId());
     }
 }
