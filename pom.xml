@@ -9,6 +9,7 @@
 
   <modules>
     <module>order-service</module>
+    <module>payment-service</module>
   </modules>
 
   <build>
@@ -26,6 +27,16 @@
             </goals>
             <configuration>
               <mainClass>org.orderservice.OrderServiceApplication</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>run-order-service</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>org.paymentservice.PaymentServiceApplication</mainClass>
             </configuration>
           </execution>
         </executions>
